@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | 滑稽破坏王</title>
+    <title>6 5 1625 | 滑稽破坏王</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
@@ -75,12 +75,14 @@
       // the canvas DOM size and WebGL render target sizes yourself.
       // config.matchWebGLToCanvasSize = false;
 
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        container.className = "unity-mobile";
-        // Avoid draining fillrate performance on mobile devices,
-        // and default/override low DPI mode on mobile browsers.
-        config.devicePixelRatio = 1;
-        unityShowBanner('WebGL builds are not supported on mobile devices.');
+      var isPhone = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if (isPhone) {
+        //container.className = "unity-mobile";
+        //config.devicePixelRatio = 1;
+        canvas.style.width = "960px";
+        canvas.style.height = "540px";
+        //container.style.transform = 'rotate(90deg)';
+       
       } else {
         canvas.style.width = "960px";
         canvas.style.height = "540px";
@@ -94,6 +96,9 @@
           progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
           loadingBar.style.display = "none";
+          if (isPhone) {
+            //unityInstance.SetFullscreen(1);
+          }
           fullscreenButton.onclick = () => {
             unityInstance.SetFullscreen(1);
           };
